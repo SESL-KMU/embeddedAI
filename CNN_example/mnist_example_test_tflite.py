@@ -34,8 +34,3 @@ plt.imshow(test_image[0], cmap='Greys')
 plt.savefig('savefig_default.png')
 plt.show()
 
-img = cv2.imread('./savefig_default.png')
-cv2.imshow('image', img)
-cv2.waitKey(0)
-cv2.destroyAllWindows()
-
