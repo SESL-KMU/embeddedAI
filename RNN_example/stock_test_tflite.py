@@ -51,6 +51,9 @@ interpreter.invoke()
 output_data = interpreter.get_tensor(output_details[0]['index'])
 print(output_data)
 
+if ans == 'y' or ans == 'Y':
+    elapsed = time.perf_counter() - start
+    print('Elapsed %.3f seconds.' % elapsed)
 
 def create_time_steps(length):
     time_steps = []
@@ -105,9 +108,7 @@ x_val, y_val = data_geenrator(stock_data, TRAIN_SPLIT, None,
 multi_step_plot(x_val[0], y_val[0],
                 output_data[0], 'Validation Predict')
 
-if ans == 'y' or ans == 'Y':
-    elapsed = time.perf_counter() - start
-    print('Elapsed %.3f seconds.' % elapsed)
+
 
 # multi_step_plot(stock_data[-past_history:], np.array([0]),
 #                 output_data[0],
