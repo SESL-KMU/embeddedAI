@@ -108,13 +108,3 @@ x_val, y_val = data_geenrator(stock_data, TRAIN_SPLIT, None,
 multi_step_plot(x_val[0], y_val[0],
                 output_data[0], 'Validation Predict')
 
-
-
-# multi_step_plot(stock_data[-past_history:], np.array([0]),
-#                 output_data[0],
-#                 'Future month Predict')
-
-img = cv2.imread('./savefig_default.png')
-cv2.imshow('image', img)
-cv2.waitKey(0)
-cv2.destroyAllWindows()
