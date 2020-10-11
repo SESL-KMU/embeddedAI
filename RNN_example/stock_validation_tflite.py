@@ -4,7 +4,6 @@ from matplotlib import pyplot as plt
 import time
 
 ans = input('do you wanna check running time? (y/n)')
-start = time.perf_counter()
 
 fb = open('./B.txt', 'r')
 data = ()
@@ -45,10 +44,18 @@ input_shape = input_details[0]['shape']
 input_data = np.array(np.array([stock_data[-past_history:]]), dtype=np.float32)
 interpreter.set_tensor(input_details[0]['index'], input_data)
 
-interpreter.invoke()
-
-output_data = interpreter.get_tensor(output_details[0]['index'])
-print(output_data)
+if ans == 'y' or ans == 'Y':
+    for _ in range(3):
+        start = time.perf_counter()
+        interpreter.invoke()
+        output_data = interpreter.get_tensor(output_details[0]['index'])
+        print(output_data)
+        elapsed = time.perf_counter() - start
+        print('Elapsed %.3f seconds.' % elapsed)
+else:
+    interpreter.invoke()
+    output_data = interpreter.get_tensor(output_details[0]['index'])
+    print(output_data)
 
 
 def create_time_steps(length):
@@ -111,6 +118,6 @@ if ans == 'n' or ans == 'N':
     multi_step_plot(x_val[0], y_val[0],
                     output_data_val[0], 'Validation Predict')
 
-if ans == 'y' or ans == 'Y':
-    elapsed = time.perf_counter() - start
-    print('Elapsed %.3f seconds.' % elapsed)
+# if ans == 'y' or ans == 'Y':
+#     elapsed = time.perf_counter() - start
+#     print('Elapsed %.3f seconds.' % elapsed)
